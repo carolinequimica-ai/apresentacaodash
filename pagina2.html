@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Layout — Wireframes v3.7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
+        .page-frame { background: #1e293b; border-radius: 12px; padding: 16px; aspect-ratio: 16/9.5; position: relative; overflow: hidden; }
+        .kpi-card { background: #ffffff; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: center; }
+        .kpi-value { font-size: 1.4rem; font-weight: 700; color: #1e293b; }
+        .kpi-label { font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+        .kpi-sub { font-size: 0.6rem; color: #64748b; margin-top: 2px; }
+        .chart-area { background: #ffffff; border-radius: 8px; padding: 12px; }
+        .chart-title { font-size: 0.7rem; font-weight: 700; color: #475569; margin-bottom: 8px; }
+        .filter-bar { background: #334155; border-radius: 8px; padding: 8px 12px; display: flex; align-items: center; gap: 12px; }
+        .filter-chip { background: #475569; color: #e2e8f0; font-size: 0.6rem; padding: 4px 10px; border-radius: 4px; }
+        .page-title { color: #f8fafc; font-size: 1rem; font-weight: 700; }
+        .page-sub { color: #94a3b8; font-size: 0.6rem; }
+        .placeholder-bar { background: #e2e8f0; border-radius: 2px; }
+        .placeholder-line { border-top: 2px solid #3b82f6; }
+        .check-yes { color: #16a34a; font-weight: 700; }
+        .check-partial { color: #d97706; font-weight: 600; }
+        .check-no { color: #dc2626; font-weight: 600; }
+        @media print { body { background: white; } .no-print { display: none; } }
+    </style>
+</head>
+<body class="p-6">
+<div class="max-w-6xl mx-auto">
+
+    <!-- HEADER -->
+    <div class="flex justify-between items-end mb-8">
+        <div>
+            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full">WIREFRAMES</span>
+            <h1 class="text-3xl font-bold text-slate-900 mt-2">Layout do Dashboard — 5 Páginas</h1>
+            <p class="text-slate-500 mt-1">Gabarito visual de onde colocar cada componente no Power BI</p>
+        </div>
+        <button onclick="window.print()" class="no-print bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-700">Imprimir / PDF</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PARTE 1: COBERTURA DE PERGUNTAS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 mb-8">
+        <h2 class="text-lg font-bold text-slate-900 mb-1">1. Verificação de Cobertura</h2>
+        <p class="text-sm text-slate-500 mb-4">Todas as perguntas da Matriz de Dicionário v3.7 mapeadas para as 5 páginas do dashboard</p>
+
+        <table class="w-full text-sm border-collapse">
+            <thead>
+                <tr class="bg-slate-800 text-white text-xs">
+                    <th class="p-2 text-left w-1/4">Pergunta / Indicador</th>
+                    <th class="p-2 text-left w-1/6">Medida DAX</th>
+                    <th class="p-2 text-left w-1/12">Página</th>
+                    <th class="p-2 text-left w-1/6">Visual</th>
+                    <th class="p-2 text-center w-1/12">Coberta?</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-xs">
+                <!-- AQUISIÇÃO -->
+                <tr class="bg-green-50"><td colspan="5" class="p-2 font-black text-green-800 text-[10px] uppercase tracking-widest">📊 PILAR 1: AQUISIÇÃO</td></tr>
+                <tr><td class="p-2">De qual front os leads estão vindo?</td><td class="p-2 font-mono">Total_Leads</td><td class="p-2">P2</td><td class="p-2">Barras horizontais</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Qual front envia leads de melhor qualidade?</td><td class="p-2 font-mono">Taxa_Recuperacao + Total_Leads</td><td class="p-2">P2</td><td class="p-2">Linha e colunas</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Leads de qual produto convertem mais?</td><td class="p-2 font-mono">Taxa_Recuperacao + slicer</td><td class="p-2">P2</td><td class="p-2">Slicer produto_tentado</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Quantos leads novos por período?</td><td class="p-2 font-mono">Novos_Leads</td><td class="p-2">P2</td><td class="p-2">Área no tempo</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Análise de coorte (leads jan vs mar)</td><td class="p-2 font-mono">LTV_Medio + Novos_Leads</td><td class="p-2">P4</td><td class="p-2">Matriz mês entrada × receita</td><td class="p-2 text-center check-yes">✅</td></tr>
+
+                <!-- ATIVAÇÃO -->
+                <tr class="bg-blue-50"><td colspan="5" class="p-2 font-black text-blue-800 text-[10px] uppercase tracking-widest">⚡ PILAR 2: ATIVAÇÃO</td></tr>
+                <tr><td class="p-2">Onde os leads estão travando? (funil)</td><td class="p-2 font-mono">Total_Leads por etapa</td><td class="p-2">P3</td><td class="p-2">Funil (Funnel)</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Qual campanha mais converteu em vendas?</td><td class="p-2 font-mono">Receita_Leads_Na_Jornada</td><td class="p-2">P3</td><td class="p-2">Tabela enriquecida</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Open Rate / CTR / CTOR</td><td class="p-2 font-mono">Open_Rate, CTR, CTOR</td><td class="p-2">P3</td><td class="p-2">KPI cards + tabela</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Tempo médio até primeira compra</td><td class="p-2 font-mono">Tempo_Medio_Entrada_Compra</td><td class="p-2">P3</td><td class="p-2">KPI card</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Em que horário leads engajam mais?</td><td class="p-2 font-mono">Total_Eventos por hora</td><td class="p-2">P3</td><td class="p-2">Barras verticais (hora)</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Qual estágio gera mais vendas?</td><td class="p-2 font-mono">Receita_Leads_Na_Jornada</td><td class="p-2">P3</td><td class="p-2">Tabela etapa × receita</td><td class="p-2 text-center check-yes">✅</td></tr>
+
+                <!-- RECEITA -->
+                <tr class="bg-emerald-50"><td colspan="5" class="p-2 font-black text-emerald-800 text-[10px] uppercase tracking-widest">🔄 PILAR 3: RECEITA & RETENÇÃO</td></tr>
+                <tr><td class="p-2">Receita total / por período</td><td class="p-2 font-mono">Receita_Total</td><td class="p-2">P1+P4</td><td class="p-2">KPI + Área no tempo</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Ticket médio</td><td class="p-2 font-mono">Ticket_Medio</td><td class="p-2">P1</td><td class="p-2">KPI card</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Receita por plataforma</td><td class="p-2 font-mono">Receita_Total + dim_plataforma</td><td class="p-2">P4</td><td class="p-2">Barras verticais</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Receita por produto</td><td class="p-2 font-mono">Receita_Total + dim_produto</td><td class="p-2">P1</td><td class="p-2">Barras verticais</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Receita recorrência vs primeira compra</td><td class="p-2 font-mono">Receita_Inicial/Rebill/Upsell</td><td class="p-2">P4</td><td class="p-2">Donut</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">% de recorrência</td><td class="p-2 font-mono">Pct_Recorrencia</td><td class="p-2">P4</td><td class="p-2">KPI card</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Taxa de reembolso</td><td class="p-2 font-mono">Taxa_Reembolso</td><td class="p-2">P5</td><td class="p-2">Gauge (semáforo)</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Taxa de chargeback</td><td class="p-2 font-mono">Taxa_Chargeback</td><td class="p-2">P5</td><td class="p-2">Gauge (semáforo)</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Receita líquida (pós-devoluções)</td><td class="p-2 font-mono">Receita_Liquida</td><td class="p-2">P1+P4</td><td class="p-2">KPI card</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Qual plataforma vende mais?</td><td class="p-2 font-mono">Receita_Total + dim_plataforma</td><td class="p-2">P4</td><td class="p-2">Barras verticais</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Método de pagamento × chargeback</td><td class="p-2 font-mono">Taxa_Chargeback + dim_met</td><td class="p-2">P5</td><td class="p-2">Tabela</td><td class="p-2 text-center check-yes">✅</td></tr>
+
+                <!-- CRUZAMENTOS -->
+                <tr class="bg-amber-50"><td colspan="5" class="p-2 font-black text-amber-800 text-[10px] uppercase tracking-widest">⭐ CRUZAMENTOS ENTRE PILARES</td></tr>
+                <tr><td class="p-2 font-bold">⭐ Taxa de Recuperação (Pergunta de Ouro)</td><td class="p-2 font-mono">Taxa_Recuperacao</td><td class="p-2">P1</td><td class="p-2">Gauge destaque</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Qual estágio gera mais receita?</td><td class="p-2 font-mono">Receita_Leads_Na_Jornada</td><td class="p-2">P3</td><td class="p-2">Tabela etapa × receita</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Tempo entrada → compra</td><td class="p-2 font-mono">Tempo_Medio_Entrada_Compra</td><td class="p-2">P3</td><td class="p-2">KPI card</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Conversão por front</td><td class="p-2 font-mono">Taxa_Recuperacao por front</td><td class="p-2">P2</td><td class="p-2">Linha e colunas</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">Produto tentado vs comprado</td><td class="p-2 font-mono">Receita_Total na matriz</td><td class="p-2">P4</td><td class="p-2">Matriz heat map</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Engajamento vs recompra</td><td class="p-2 font-mono">Receita_Leads_Na_Jornada</td><td class="p-2">P3</td><td class="p-2">Via TREATAS</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr><td class="p-2">LTV por coorte</td><td class="p-2 font-mono">LTV_Medio + Novos_Leads</td><td class="p-2">P4</td><td class="p-2">Matriz mês × LTV</td><td class="p-2 text-center check-yes">✅</td></tr>
+                <tr class="bg-slate-50"><td class="p-2">Receita por tipo (recorrência)</td><td class="p-2 font-mono">Receita_Inicial/Rebill/Upsell</td><td class="p-2">P4</td><td class="p-2">Donut + área empilhada</td><td class="p-2 text-center check-yes">✅</td></tr>
+            </tbody>
+        </table>
+
+        <div class="mt-4 bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+            <p class="text-emerald-800 text-sm font-bold">✅ 100% de cobertura — todas as 27 perguntas/indicadores têm medida DAX, página e visual definidos.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PARTE 2: WIREFRAMES -->
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 class="text-2xl font-bold text-slate-900 mb-6">2. Wireframes — Layout visual de cada página</h2>
+    <p class="text-slate-500 text-sm mb-6">Cada wireframe representa a tela do Power BI em proporção 16:9. Use como gabarito para posicionar os componentes. As cores e proporções são sugestões — ajuste conforme necessidade.</p>
+
+    <!-- ═══════ PÁGINA 1 ═══════ -->
+    <div class="mb-10">
+        <div class="flex items-center gap-3 mb-3">
+            <span class="bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full">P1</span>
+            <h3 class="text-xl font-bold text-slate-900">Visão Geral</h3>
+            <span class="text-slate-400 text-sm">— Resposta em 5 segundos: "Como o negócio está?"</span>
+        </div>
+
+        <div class="page-frame">
+            <!-- Title bar -->
+            <div class="flex justify-between items-center mb-3">
+                <div>
+                    <div class="page-title">📊 Visão Geral</div>
+                    <div class="page-sub">Panorama do negócio em tempo real</div>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-chip">📅 Período: Último mês ▾</div>
+                    <div class="filter-chip">🏢 Front: Todos ▾</div>
+                    <div class="filter-chip">💊 Produto: Todos ▾</div>
+                    <div class="filter-chip">💰 Moeda: Todos ▾</div>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="grid grid-cols-5 gap-2 mb-3">
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Total</div>
+                    <div class="kpi-value text-emerald-600">R$ 15.333</div>
+                    <div class="kpi-sub">▲ 12% vs mês ant.</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Líquida</div>
+                    <div class="kpi-value">R$ 13.166</div>
+                    <div class="kpi-sub">▲ 8% vs mês ant.</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Novos Leads</div>
+                    <div class="kpi-value text-blue-600">10</div>
+                    <div class="kpi-sub">Jan: 4 | Fev: 4 | Mar: 2</div>
+                </div>
+                <div class="kpi-card border-2 border-amber-400">
+                    <div class="kpi-label">⭐ Taxa Recuperação</div>
+                    <div class="kpi-value text-amber-600">70%</div>
+                    <div class="kpi-sub">7 de 10 leads compraram</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Ticket Médio</div>
+                    <div class="kpi-value">R$ 1.533</div>
+                    <div class="kpi-sub">por transação</div>
+                </div>
+            </div>
+
+            <!-- Main charts -->
+            <div class="grid grid-cols-12 gap-2" style="height: 55%;">
+                <div class="col-span-7 chart-area flex flex-col">
+                    <div class="chart-title">📈 Receita Total por dia</div>
+                    <div class="flex-1 flex items-end gap-1 px-2 pb-2">
+                        <div class="placeholder-bar w-full" style="height:30%"></div>
+                        <div class="placeholder-bar w-full" style="height:45%"></div>
+                        <div class="placeholder-bar w-full" style="height:35%"></div>
+                        <div class="placeholder-bar w-full" style="height:60%"></div>
+                        <div class="placeholder-bar w-full" style="height:80%"></div>
+                        <div class="placeholder-bar w-full" style="height:55%"></div>
+                        <div class="placeholder-bar w-full" style="height:70%"></div>
+                        <div class="placeholder-bar w-full" style="height:90%"></div>
+                        <div class="placeholder-bar w-full" style="height:65%"></div>
+                        <div class="placeholder-bar w-full" style="height:75%"></div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-2">Eixo X: dim_calendario.data | Valor: Receita_Total | Visual: Gráfico de Área</div>
+                </div>
+                <div class="col-span-2 chart-area flex flex-col">
+                    <div class="chart-title">🍩 Tipo Transação</div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full border-8 border-blue-500 relative">
+                            <div class="absolute inset-0 rounded-full border-8 border-transparent border-t-emerald-500 border-r-emerald-500" style="transform: rotate(45deg)"></div>
+                            <div class="absolute inset-0 flex items-center justify-center text-[8px] font-bold text-slate-600">100%</div>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Legenda: tipo_transacao | Valor: Receita_Total | Visual: Donut</div>
+                </div>
+                <div class="col-span-3 chart-area flex flex-col">
+                    <div class="chart-title">📦 Top Produtos por Receita</div>
+                    <div class="flex-1 flex flex-col justify-center gap-2 px-2">
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-16 text-right text-slate-500">Renovavida</span><div class="placeholder-bar h-4 flex-1 bg-blue-400" style="width:80%"></div></div>
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-16 text-right text-slate-500">Artrocel</span><div class="placeholder-bar h-4 flex-1 bg-blue-300" style="width:55%"></div></div>
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-16 text-right text-slate-500">Insupril</span><div class="placeholder-bar h-4 flex-1 bg-blue-200" style="width:30%"></div></div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Eixo Y: dim_produto.nome | Valor: Receita_Total | Visual: Barras Horiz.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ PÁGINA 2 ═══════ -->
+    <div class="mb-10">
+        <div class="flex items-center gap-3 mb-3">
+            <span class="bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full">P2</span>
+            <h3 class="text-xl font-bold text-slate-900">Aquisição</h3>
+            <span class="text-slate-400 text-sm">— "De onde os leads vêm e qual a qualidade?"</span>
+        </div>
+
+        <div class="page-frame">
+            <div class="flex justify-between items-center mb-3">
+                <div>
+                    <div class="page-title">📊 Aquisição</div>
+                    <div class="page-sub">Origem, volume e qualidade dos leads</div>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-chip">📅 Período ▾</div>
+                    <div class="filter-chip">💊 Produto tentado ▾</div>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="grid grid-cols-4 gap-2 mb-3">
+                <div class="kpi-card">
+                    <div class="kpi-label">Novos Leads</div>
+                    <div class="kpi-value text-green-600">10</div>
+                    <div class="kpi-sub">No período selecionado</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">LTV Médio por Lead</div>
+                    <div class="kpi-value">R$ 1.533</div>
+                    <div class="kpi-sub">Receita ÷ total de leads</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Taxa Recuperação</div>
+                    <div class="kpi-value text-amber-600">70%</div>
+                    <div class="kpi-sub">Leads que compraram</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Transações</div>
+                    <div class="kpi-value">10</div>
+                    <div class="kpi-sub">vendas no período</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-12 gap-2" style="height: 55%;">
+                <!-- Leads por Front -->
+                <div class="col-span-4 chart-area flex flex-col">
+                    <div class="chart-title">🏢 Leads por Front</div>
+                    <div class="flex-1 flex flex-col justify-center gap-2 px-2">
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-12 text-right text-slate-500">Front A</span><div class="placeholder-bar h-5 bg-slate-400" style="width:80%"></div><span class="text-[9px] text-slate-500">4</span></div>
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-12 text-right text-slate-500">Front B</span><div class="placeholder-bar h-5 bg-slate-400" style="width:60%"></div><span class="text-[9px] text-slate-500">3</span></div>
+                        <div class="flex items-center gap-2"><span class="text-[9px] w-12 text-right text-slate-500">Front C</span><div class="placeholder-bar h-5 bg-slate-400" style="width:60%"></div><span class="text-[9px] text-slate-500">3</span></div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Y: dim_lead.origem_fonte | Valor: Total_Leads | Barras Horiz. Ordenadas</div>
+                </div>
+
+                <!-- Volume vs Qualidade -->
+                <div class="col-span-4 chart-area flex flex-col">
+                    <div class="chart-title">📊 Volume vs Qualidade por Front</div>
+                    <div class="flex-1 flex items-end justify-center gap-4 pb-4">
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="text-[8px] text-emerald-600 font-bold">75%</div>
+                            <div class="w-8 bg-slate-300 rounded" style="height: 60%"></div>
+                            <div class="text-[8px] text-slate-500">Front A</div>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="text-[8px] text-emerald-600 font-bold">100%</div>
+                            <div class="w-8 bg-slate-300 rounded" style="height: 45%"></div>
+                            <div class="text-[8px] text-slate-500">Front B</div>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="text-[8px] text-emerald-600 font-bold">33%</div>
+                            <div class="w-8 bg-slate-300 rounded" style="height: 45%"></div>
+                            <div class="text-[8px] text-slate-500">Front C</div>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Colunas: Total_Leads (cinza) | Linha: Taxa_Recuperacao (verde) | Linha+Colunas</div>
+                </div>
+
+                <!-- Novos leads no tempo -->
+                <div class="col-span-4 chart-area flex flex-col">
+                    <div class="chart-title">📈 Novos Leads por mês</div>
+                    <div class="flex-1 flex items-end gap-1 px-4 pb-2">
+                        <div class="flex flex-col items-center gap-1 flex-1">
+                            <div class="text-[9px] font-bold text-slate-600">4</div>
+                            <div class="placeholder-bar w-full bg-blue-200" style="height:70%"></div>
+                            <div class="text-[8px] text-slate-400">Jan</div>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 flex-1">
+                            <div class="text-[9px] font-bold text-slate-600">4</div>
+                            <div class="placeholder-bar w-full bg-blue-300" style="height:70%"></div>
+                            <div class="text-[8px] text-slate-400">Fev</div>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 flex-1">
+                            <div class="text-[9px] font-bold text-slate-600">2</div>
+                            <div class="placeholder-bar w-full bg-blue-400" style="height:35%"></div>
+                            <div class="text-[8px] text-slate-400">Mar</div>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">X: dim_calendario.mes | Valor: Novos_Leads (USERELATIONSHIP) | Área</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ PÁGINA 3 ═══════ -->
+    <div class="mb-10">
+        <div class="flex items-center gap-3 mb-3">
+            <span class="bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full">P3</span>
+            <h3 class="text-xl font-bold text-slate-900">Ativação & Funil</h3>
+            <span class="text-slate-400 text-sm">— "Onde os leads estão travando na jornada?"</span>
+        </div>
+
+        <div class="page-frame">
+            <div class="flex justify-between items-center mb-3">
+                <div>
+                    <div class="page-title">⚡ Ativação & Funil</div>
+                    <div class="page-sub">Jornada do lead, engajamento e conversão</div>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-chip">📅 Período ▾</div>
+                    <div class="filter-chip">🏢 Front ▾</div>
+                    <div class="filter-chip">📧 Campanha ▾</div>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="grid grid-cols-5 gap-2 mb-3">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Eventos</div>
+                    <div class="kpi-value text-blue-600">40</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Open Rate</div>
+                    <div class="kpi-value">28,9%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">CTR</div>
+                    <div class="kpi-value">6,6%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">CTOR</div>
+                    <div class="kpi-value">23,0%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Tempo até Compra</div>
+                    <div class="kpi-value">~17 dias</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-12 gap-2" style="height: 55%;">
+                <!-- Funil -->
+                <div class="col-span-4 chart-area flex flex-col">
+                    <div class="chart-title">🔻 Funil de Conversão (DESTAQUE)</div>
+                    <div class="flex-1 flex flex-col items-center justify-center gap-1 px-2">
+                        <div class="bg-blue-100 text-blue-800 text-[9px] font-bold text-center py-1.5 rounded" style="width:100%">01_lead_novo: 10 leads</div>
+                        <div class="bg-blue-200 text-blue-800 text-[9px] font-bold text-center py-1.5 rounded" style="width:85%">02_engajou: 10 leads</div>
+                        <div class="bg-blue-300 text-blue-900 text-[9px] font-bold text-center py-1.5 rounded" style="width:65%">03_clicou: 8 leads</div>
+                        <div class="bg-blue-500 text-white text-[9px] font-bold text-center py-1.5 rounded" style="width:50%">04_comprador: 7 leads</div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Categ: etapa_funil | Valor: Total_Leads (DISTINCTCOUNT) | Funnel | Filtrar N/A</div>
+                </div>
+
+                <!-- Tabela campanhas -->
+                <div class="col-span-5 chart-area flex flex-col">
+                    <div class="chart-title">📧 Performance de Campanhas</div>
+                    <div class="flex-1 px-1">
+                        <table class="w-full text-[8px]">
+                            <thead><tr class="bg-slate-100"><th class="p-1 text-left">Campanha</th><th class="p-1 text-right">Envios</th><th class="p-1 text-right">Open%</th><th class="p-1 text-right">CTR%</th><th class="p-1 text-right font-bold text-emerald-700">Receita</th></tr></thead>
+                            <tbody>
+                                <tr><td class="p-1">Camp A - Recup.</td><td class="p-1 text-right">5.000</td><td class="p-1 text-right">30,0%</td><td class="p-1 text-right">8,4%</td><td class="p-1 text-right font-bold">R$ XX</td></tr>
+                                <tr class="bg-slate-50"><td class="p-1">Camp B - Upsell</td><td class="p-1 text-right">3.000</td><td class="p-1 text-right">28,3%</td><td class="p-1 text-right">6,0%</td><td class="p-1 text-right font-bold">R$ XX</td></tr>
+                                <tr><td class="p-1">Camp C - Reeng.</td><td class="p-1 text-right">8.000</td><td class="p-1 text-right">27,5%</td><td class="p-1 text-right">6,9%</td><td class="p-1 text-right font-bold">R$ XX</td></tr>
+                                <tr class="bg-slate-50"><td class="p-1">Camp D - News.</td><td class="p-1 text-right">6.000</td><td class="p-1 text-right">30,0%</td><td class="p-1 text-right">5,2%</td><td class="p-1 text-right font-bold">R$ XX</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">Linhas: dim_campanha | Valores: envios, Open_Rate, CTR, Receita_Leads_Na_Jornada | Tabela</div>
+                </div>
+
+                <!-- Etapa vs Receita + Horário -->
+                <div class="col-span-3 flex flex-col gap-2">
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">💰 Receita por Etapa</div>
+                        <div class="flex-1 flex flex-col justify-center gap-1 px-1">
+                            <div class="flex items-center gap-1"><span class="text-[8px] w-14 text-right">01_novo</span><div class="placeholder-bar h-3 bg-emerald-300" style="width:90%"></div></div>
+                            <div class="flex items-center gap-1"><span class="text-[8px] w-14 text-right">02_eng</span><div class="placeholder-bar h-3 bg-emerald-300" style="width:85%"></div></div>
+                            <div class="flex items-center gap-1"><span class="text-[8px] w-14 text-right">03_clic</span><div class="placeholder-bar h-3 bg-emerald-400" style="width:75%"></div></div>
+                            <div class="flex items-center gap-1"><span class="text-[8px] w-14 text-right">04_comp</span><div class="placeholder-bar h-3 bg-emerald-500" style="width:70%"></div></div>
+                        </div>
+                        <div class="text-[9px] text-slate-400">etapa_funil × Receita_Leads_Na_Jornada</div>
+                    </div>
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">🕐 Eventos por Horário</div>
+                        <div class="flex-1 flex items-end gap-px px-1 pb-1">
+                            <div class="placeholder-bar w-full bg-blue-200" style="height:40%"></div>
+                            <div class="placeholder-bar w-full bg-blue-200" style="height:60%"></div>
+                            <div class="placeholder-bar w-full bg-blue-300" style="height:80%"></div>
+                            <div class="placeholder-bar w-full bg-blue-400" style="height:50%"></div>
+                            <div class="placeholder-bar w-full bg-blue-300" style="height:70%"></div>
+                            <div class="placeholder-bar w-full bg-blue-200" style="height:30%"></div>
+                        </div>
+                        <div class="text-[9px] text-slate-400">hora_evento × Total_Eventos | Barras Vert.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ PÁGINA 4 ═══════ -->
+    <div class="mb-10">
+        <div class="flex items-center gap-3 mb-3">
+            <span class="bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full">P4</span>
+            <h3 class="text-xl font-bold text-slate-900">Receita & Retenção</h3>
+            <span class="text-slate-400 text-sm">— "Os clientes voltam? Quanto valem no longo prazo?"</span>
+        </div>
+
+        <div class="page-frame">
+            <div class="flex justify-between items-center mb-3">
+                <div>
+                    <div class="page-title">🔄 Receita & Retenção</div>
+                    <div class="page-sub">Composição da receita, plataformas e recompra</div>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-chip">📅 Período ▾</div>
+                    <div class="filter-chip">💊 Produto ▾</div>
+                    <div class="filter-chip">💰 Moeda ▾</div>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="grid grid-cols-4 gap-2 mb-3">
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Líquida</div>
+                    <div class="kpi-value text-emerald-600">R$ 13.166</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">% Recorrência</div>
+                    <div class="kpi-value text-blue-600">49,8%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Ticket Médio</div>
+                    <div class="kpi-value">R$ 1.533</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">LTV Médio / Lead</div>
+                    <div class="kpi-value">R$ 1.533</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-12 gap-2" style="height: 55%;">
+                <!-- Área empilhada receita no tempo -->
+                <div class="col-span-5 chart-area flex flex-col">
+                    <div class="chart-title">📈 Receita por Tipo ao longo do tempo</div>
+                    <div class="flex-1 flex items-end gap-1 px-2 pb-2">
+                        <div class="flex flex-col flex-1"><div class="bg-blue-300" style="height:20%"></div><div class="bg-emerald-300" style="height:30%"></div><div class="bg-purple-300" style="height:10%"></div></div>
+                        <div class="flex flex-col flex-1"><div class="bg-blue-300" style="height:25%"></div><div class="bg-emerald-300" style="height:15%"></div><div class="bg-purple-300" style="height:20%"></div></div>
+                        <div class="flex flex-col flex-1"><div class="bg-blue-300" style="height:35%"></div><div class="bg-emerald-300" style="height:25%"></div><div class="bg-purple-300" style="height:15%"></div></div>
+                    </div>
+                    <div class="flex gap-3 px-2 text-[8px] text-slate-500"><span>🟦 inicial</span><span>🟩 rebill</span><span>🟪 upsell</span></div>
+                    <div class="text-[9px] text-slate-400 px-1">X: mês | Valores: Receita por tipo_transacao | Área Empilhada</div>
+                </div>
+
+                <!-- Donut + Plataformas -->
+                <div class="col-span-3 flex flex-col gap-2">
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">🍩 Composição da Receita</div>
+                        <div class="flex-1 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full border-[6px] border-blue-400 relative">
+                                <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-t-emerald-400 border-r-emerald-400" style="transform: rotate(30deg)"></div>
+                            </div>
+                        </div>
+                        <div class="text-[9px] text-slate-400">tipo_transacao × Receita_Total | Donut</div>
+                    </div>
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">🏪 Receita por Plataforma</div>
+                        <div class="flex-1 flex items-end justify-center gap-3 pb-2">
+                            <div class="flex flex-col items-center"><div class="w-8 bg-blue-400 rounded-t" style="height:30%"></div><div class="text-[7px] text-slate-500">CP</div></div>
+                            <div class="flex flex-col items-center"><div class="w-8 bg-blue-400 rounded-t" style="height:20%"></div><div class="text-[7px] text-slate-500">CB</div></div>
+                            <div class="flex flex-col items-center"><div class="w-8 bg-blue-400 rounded-t" style="height:70%"></div><div class="text-[7px] text-slate-500">TG</div></div>
+                        </div>
+                        <div class="text-[9px] text-slate-400">nome_plataforma × Receita_Total | Colunas</div>
+                    </div>
+                </div>
+
+                <!-- Matriz produto × comprado + Pagamento -->
+                <div class="col-span-4 flex flex-col gap-2">
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">🔀 Produto Tentado vs Comprado (Heat Map)</div>
+                        <div class="flex-1 px-1">
+                            <table class="w-full text-[7px] mt-1">
+                                <thead><tr><th class="p-1"></th><th class="p-1 text-center">Artrocel</th><th class="p-1 text-center">Insupril</th><th class="p-1 text-center">Renovavida</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="p-1 font-bold">Artrocel</td><td class="p-1 text-center bg-emerald-200 rounded">R$ 3.240</td><td class="p-1 text-center bg-emerald-50">R$ 0</td><td class="p-1 text-center bg-emerald-100">R$ 1.080</td></tr>
+                                    <tr><td class="p-1 font-bold">Insupril</td><td class="p-1 text-center bg-emerald-50">R$ 0</td><td class="p-1 text-center bg-emerald-100">R$ 594</td><td class="p-1 text-center bg-emerald-200">R$ 3.272</td></tr>
+                                    <tr><td class="p-1 font-bold">Renovavida</td><td class="p-1 text-center bg-emerald-50">R$ 0</td><td class="p-1 text-center bg-emerald-50">R$ 0</td><td class="p-1 text-center bg-emerald-300 font-bold">R$ 7.141</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-[9px] text-slate-400 px-1">Linhas: produto_tentado | Colunas: dim_produto | Valores: Receita_Total | Matriz</div>
+                    </div>
+                    <div class="chart-area flex-1 flex flex-col">
+                        <div class="chart-title">💳 Receita por Método de Pagamento</div>
+                        <div class="flex-1 flex items-end justify-center gap-3 pb-2">
+                            <div class="flex flex-col items-center"><div class="w-7 bg-slate-300 rounded-t" style="height:15%"></div><div class="text-[7px]">Boleto</div></div>
+                            <div class="flex flex-col items-center"><div class="w-7 bg-slate-400 rounded-t" style="height:45%"></div><div class="text-[7px]">PIX</div></div>
+                            <div class="flex flex-col items-center"><div class="w-7 bg-slate-500 rounded-t" style="height:60%"></div><div class="text-[7px]">Cartão</div></div>
+                        </div>
+                        <div class="text-[9px] text-slate-400">nome_pagamento × Receita_Total | Colunas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ PÁGINA 5 ═══════ -->
+    <div class="mb-10">
+        <div class="flex items-center gap-3 mb-3">
+            <span class="bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">P5</span>
+            <h3 class="text-xl font-bold text-slate-900">Saúde do Negócio</h3>
+            <span class="text-slate-400 text-sm">— "Alertas: reembolsos, chargebacks, unsubscribes"</span>
+        </div>
+
+        <div class="page-frame">
+            <div class="flex justify-between items-center mb-3">
+                <div>
+                    <div class="page-title">🚨 Saúde do Negócio</div>
+                    <div class="page-sub">Monitoramento de riscos e alertas</div>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-chip">📅 Período ▾</div>
+                    <div class="filter-chip">🏪 Plataforma ▾</div>
+                    <div class="filter-chip">💊 Produto ▾</div>
+                </div>
+            </div>
+
+            <!-- KPI Row com Gauges -->
+            <div class="grid grid-cols-4 gap-2 mb-3">
+                <div class="kpi-card border-2 border-amber-300">
+                    <div class="kpi-label">Taxa Reembolso</div>
+                    <div class="kpi-value text-amber-600">10,0%</div>
+                    <div class="kpi-sub">🟡 Atenção (benchmark: &lt;12%)</div>
+                    <div class="w-full bg-slate-200 rounded-full h-1.5 mt-1">
+                        <div class="bg-amber-500 h-1.5 rounded-full" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="kpi-card border-2 border-emerald-300">
+                    <div class="kpi-label">Taxa Chargeback</div>
+                    <div class="kpi-value text-emerald-600">10,0%</div>
+                    <div class="kpi-sub">🔴 Alerta nos dados mock</div>
+                    <div class="w-full bg-slate-200 rounded-full h-1.5 mt-1">
+                        <div class="bg-red-500 h-1.5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Perdida</div>
+                    <div class="kpi-value text-red-600">R$ 2.167</div>
+                    <div class="kpi-sub">Reembolsos + Chargebacks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Líquida</div>
+                    <div class="kpi-value text-emerald-600">R$ 13.166</div>
+                    <div class="kpi-sub">Total - perdas</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-12 gap-2" style="height: 55%;">
+                <!-- Reembolso no tempo -->
+                <div class="col-span-6 chart-area flex flex-col">
+                    <div class="chart-title">📉 Taxa de Reembolso ao longo do tempo</div>
+                    <div class="flex-1 flex items-center px-4">
+                        <div class="w-full h-12 relative">
+                            <div class="absolute inset-x-0 top-1/3 border-t-2 border-dashed border-red-300"></div>
+                            <div class="absolute left-0 top-1/3 text-[7px] text-red-400 -mt-3">limite 12%</div>
+                            <svg class="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+                                <polyline points="0,20 20,18 40,15 60,12 80,10 100,8" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">X: dim_calendario.mes | Valor: Taxa_Reembolso | Linha com referência 12%</div>
+                </div>
+
+                <!-- Chargeback no tempo -->
+                <div class="col-span-6 chart-area flex flex-col">
+                    <div class="chart-title">📉 Taxa de Chargeback ao longo do tempo</div>
+                    <div class="flex-1 flex items-center px-4">
+                        <div class="w-full h-12 relative">
+                            <div class="absolute inset-x-0 top-1/4 border-t-2 border-dashed border-red-500"></div>
+                            <div class="absolute left-0 top-1/4 text-[7px] text-red-500 -mt-3">limite 1%</div>
+                            <svg class="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+                                <polyline points="0,25 20,22 40,20 60,18 80,16 100,15" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 px-1">X: dim_calendario.mes | Valor: Taxa_Chargeback | Linha com referência 1%</div>
+                </div>
+            </div>
+
+            <!-- Bottom tables -->
+            <div class="grid grid-cols-2 gap-2 mt-2">
+                <div class="chart-area">
+                    <div class="chart-title">💊 Produtos com maior taxa de reembolso</div>
+                    <table class="w-full text-[8px]">
+                        <thead><tr class="bg-slate-100"><th class="p-1 text-left">Produto</th><th class="p-1 text-right">Transações</th><th class="p-1 text-right">Reembolsos</th><th class="p-1 text-right">Taxa</th></tr></thead>
+                        <tbody>
+                            <tr><td class="p-1">Artrocel</td><td class="p-1 text-right">4</td><td class="p-1 text-right">1</td><td class="p-1 text-right text-amber-600 font-bold">25%</td></tr>
+                            <tr class="bg-slate-50"><td class="p-1">Insupril</td><td class="p-1 text-right">3</td><td class="p-1 text-right">0</td><td class="p-1 text-right text-emerald-600">0%</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="text-[9px] text-slate-400 mt-1">dim_produto × Taxa_Reembolso | Tabela ordenada</div>
+                </div>
+                <div class="chart-area">
+                    <div class="chart-title">💳 Método de pagamento × Chargeback</div>
+                    <table class="w-full text-[8px]">
+                        <thead><tr class="bg-slate-100"><th class="p-1 text-left">Método</th><th class="p-1 text-right">Transações</th><th class="p-1 text-right">CBK</th><th class="p-1 text-right">Taxa</th></tr></thead>
+                        <tbody>
+                            <tr><td class="p-1">Cartão</td><td class="p-1 text-right">6</td><td class="p-1 text-right">1</td><td class="p-1 text-right text-red-600 font-bold">16,7%</td></tr>
+                            <tr class="bg-slate-50"><td class="p-1">PIX</td><td class="p-1 text-right">4</td><td class="p-1 text-right">0</td><td class="p-1 text-right text-emerald-600">0%</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="text-[9px] text-slate-400 mt-1">dim_met_pagamento × Taxa_Chargeback | Tabela ordenada</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEGENDA GERAL -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 mb-8">
+        <h2 class="text-lg font-bold text-slate-900 mb-3">3. Legenda — Como ler os wireframes</h2>
+        <div class="grid grid-cols-3 gap-4 text-sm text-slate-600">
+            <div>
+                <h4 class="font-bold text-slate-800 mb-1">Estrutura de cada página</h4>
+                <p class="text-xs">• <strong>Topo (10%):</strong> Título + barra de filtros<br>
+                • <strong>KPIs (20%):</strong> 4-5 cards com números-chave<br>
+                • <strong>Área principal (60%):</strong> 2-4 visuais<br>
+                • <strong>Rodapé (10%):</strong> Tabelas detalhadas</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-800 mb-1">Texto cinza abaixo dos visuais</h4>
+                <p class="text-xs">Indica exatamente quais campos e medidas arrastar:<br>
+                • <strong>X/Y:</strong> campo do eixo<br>
+                • <strong>Valor:</strong> medida DAX a usar<br>
+                • <strong>Visual:</strong> tipo de gráfico do Power BI</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-800 mb-1">Filtros por página</h4>
+                <p class="text-xs">• <strong>P1:</strong> Período + Front + Produto + Moeda<br>
+                • <strong>P2:</strong> Período + Produto tentado<br>
+                • <strong>P3:</strong> Período + Front + Campanha<br>
+                • <strong>P4:</strong> Período + Produto + Moeda<br>
+                • <strong>P5:</strong> Período + Plataforma + Produto</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
